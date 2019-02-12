@@ -7,7 +7,7 @@
             "command": "g++",
             "args": [
                 "-g", /* Enable debug */
-                "-o", "main.exe", /* output name */
+                "-o", "build/debug/main.exe", /* output name */
                 "main.cpp",
                 /* SFML Paths */
                 "-IC:\\SFML-2.5.1\\include",
@@ -28,7 +28,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-o", "main.exe", /* Output name */
+                "-o", "build/release/main.exe", /* Output name */
                 "main.cpp",
                 /* SFML Paths */
                 "-IC:\\SFML-2.5.1\\include",
@@ -36,11 +36,19 @@
                 /* Ref DLLs */
                 "-lsfml-graphics",
                 "-lsfml-window",
-                "-lsfml-system",
+                "-lsfml-system"
             ],
             "presentation": {
                 "reveal": "always"
-            },
+            }
+        },
+        {
+            "label": "run release",
+            "type": "process",
+            "command": "${workspaceFolder}/build/release/main.exe",
+            "dependsOn": [
+                "build release"
+            ],
             "problemMatcher": []
         }
     ]
