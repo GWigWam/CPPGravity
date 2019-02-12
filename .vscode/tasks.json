@@ -8,7 +8,14 @@
             "args": [
                 "-g", /* Enable debug */
                 "-o", "main.exe", /* output name */
-                "main.cpp"
+                "main.cpp",
+                /* SFML Paths */
+                "-IC:\\SFML-2.5.1\\include",
+                "-LC:\\SFML-2.5.1\\lib",
+                /* Ref DLLs */
+                "-lsfml-graphics-d",
+                "-lsfml-window-d",
+                "-lsfml-system-d"
             ],
             "group": {
                 "kind": "build",
@@ -22,7 +29,14 @@
             "command": "g++",
             "args": [
                 "-o", "main.exe", /* Output name */
-                "main.cpp"
+                "main.cpp",
+                /* SFML Paths */
+                "-IC:\\SFML-2.5.1\\include",
+                "-LC:\\SFML-2.5.1\\lib",
+                /* Ref DLLs */
+                "-lsfml-graphics",
+                "-lsfml-window",
+                "-lsfml-system",
             ],
             "presentation": {
                 "reveal": "always"
