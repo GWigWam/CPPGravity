@@ -1,8 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "Entity.hpp"
-#include "Context.cpp"
+#include "Context.hpp"
 
 int main() {
     sf::ContextSettings settings;
@@ -28,7 +27,7 @@ int main() {
         context.update(elapsedSec);
 
         window.clear();
-        context.draw( [&window](sf::Drawable& d) -> void { window.draw(d); } );
+        context.draw(window);
         window.display();
     }
 

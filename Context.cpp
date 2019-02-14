@@ -1,27 +1,18 @@
-#include <SFML/Graphics.hpp>
+#include "Context.hpp"
 
-#include "Entity.hpp"
+void Context::init() {
+    Entity wo(100, 100);
+    Entities.push_back(wo);
+}
 
-class Context {
-
-public:
-    void init() {
-        Entity wo(100, 100);
-        Entities.push_back(wo);
+void Context::update(const float& elapsedSec) {
+    for(auto &ent : Entities) {
+        ent.update(elapsedSec);
     }
+}
 
-    void update(const float& elapsedSec) {
-        for(auto &ent : Entities) {
-            ent.update(elapsedSec);
-        }
+void Context::draw(sf::RenderWindow& window) {
+    for(auto &ent : Entities) {
+        window.draw(ent.draw());
     }
-
-    template<typename DrawFunc>
-    void draw(DrawFunc&& draw) {
-        for(auto &ent : Entities) {
-            draw(*ent.draw());
-        }
-    }
-
-    std::vector<Entity> Entities;
-};
+}
