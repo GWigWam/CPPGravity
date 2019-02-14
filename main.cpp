@@ -11,7 +11,7 @@ int main() {
     sf::Clock clock;
 
     Context context;
-    context.Init();
+    context.init();
 
     while(window.isOpen()) {
         sf::Event event;
@@ -25,10 +25,10 @@ int main() {
         }
 
         auto elapsedSec = clock.restart().asSeconds();
-        context.Update(elapsedSec);
+        context.update(elapsedSec);
 
         window.clear();
-        context.Draw( [&window](sf::Drawable& d) -> void { window.draw(d); } );
+        context.draw( [&window](sf::Drawable& d) -> void { window.draw(d); } );
         window.display();
     }
 

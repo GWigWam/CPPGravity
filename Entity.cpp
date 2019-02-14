@@ -6,10 +6,10 @@ Entity::Entity(float xp, float yp) {
     this->shape = sf::CircleShape(5);
 }
 
-void Entity::Update(const float& elapsedSec) {
+void Entity::update(const float& elapsedSec) {
     this->shape.setPosition(xp, yp);
 }
 
-sf::Drawable* Entity::Draw() {
+sf::Drawable* Entity::draw() {
     return &(this->shape);
 }

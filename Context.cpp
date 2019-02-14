@@ -5,21 +5,21 @@
 class Context {
 
 public:
-    void Init() {
+    void init() {
         Entity wo(100, 100);
         Entities.push_back(wo);
     }
 
-    void Update(const float& elapsedSec) {
+    void update(const float& elapsedSec) {
         for(auto &ent : Entities) {
-            ent.Update(elapsedSec);
+            ent.update(elapsedSec);
         }
     }
 
     template<typename DrawFunc>
-    void Draw(DrawFunc&& draw) {
+    void draw(DrawFunc&& draw) {
         for(auto &ent : Entities) {
-            draw(*ent.Draw());
+            draw(*ent.draw());
         }
     }
 

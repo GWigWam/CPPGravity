@@ -7,8 +7,8 @@ class Entity {
     public:
     Entity(float xp, float yp);
 
-    void Update(const float& elapsedSec);
-    sf::Drawable* Draw();
+    void update(const float& elapsedSec);
+    sf::Drawable* draw();
 
     private:
     float xp;
