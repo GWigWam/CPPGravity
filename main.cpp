@@ -1,9 +1,17 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include "Entity.hpp"
+
+std::vector<Entity> Init();
+
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML");
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+    sf::RenderWindow window(sf::VideoMode(1024, 768), "SFML", sf::Style::Close, settings);
     sf::Clock clock;
+
+    auto objs = Init();
 
     while(window.isOpen()) {
         sf::Event event;
@@ -13,16 +21,34 @@ int main() {
             }
         }
 
-        sf::Time elapsed = clock.restart();
+        auto elapsedSec = clock.restart().asSeconds();
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
             window.close();
         }
 
+        for(auto &obj : objs) {
+            obj.Update(elapsedSec);
+        }
+
         window.clear();
+
+        for(auto &obj : objs) {
+            auto cShape = obj.Draw();
+            window.draw(*cShape);
+        }
+
         window.display();
     }
 
-
     return 0;
+}
+
+std::vector<Entity> Init() {
+    std::vector<Entity> res;
+
+    Entity wo(100, 100);
+    res.push_back(wo);
+
+    return res;
 }

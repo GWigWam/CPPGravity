@@ -8,7 +8,7 @@
             "args": [
                 "-g", /* Enable debug */
                 "-o", "build/debug/main.exe", /* output name */
-                "main.cpp",
+                "*.cpp",
                 /* SFML Paths */
                 "-IC:\\SFML-2.5.1\\include",
                 "-LC:\\SFML-2.5.1\\lib",
@@ -29,7 +29,7 @@
             "command": "g++",
             "args": [
                 "-o", "build/release/main.exe", /* Output name */
-                "main.cpp",
+                "*.cpp",
                 /* SFML Paths */
                 "-IC:\\SFML-2.5.1\\include",
                 "-LC:\\SFML-2.5.1\\lib",
