@@ -7,7 +7,7 @@ void Context::init() {
 
 void Context::update(const float& elapsedSec) {
     for(auto &ent : Entities) {
-        ent.update(elapsedSec);
+        ent.update(elapsedSec, *this);
     }
 }
 
