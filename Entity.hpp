@@ -5,17 +5,30 @@
 
 class Context;
 
+struct EntityState {
+    public:
+        EntityState();
+        EntityState(float xp, float yp, float xv, float yv, float mass);
+        sf::Vector2f position;
+        sf::Vector2f velocity;
+        float mass;
+};
+
 class Entity {
     public:
-    Entity(float xp, float yp);
+    Entity(float xp, float yp, float xv, float yv, float mass);
 
     void update(const float& elapsedSec, Context& c);
+    void swap();
     sf::Drawable& draw();
 
+    EntityState* state;
+
     private:
-    float xp;
-    float yp;
     sf::CircleShape shape;
+    EntityState* nextState;
+    std::unique_ptr<EntityState> state1;
+    std::unique_ptr<EntityState> state2;
 };
 
 #endif
