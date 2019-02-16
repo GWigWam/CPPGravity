@@ -20,7 +20,7 @@ class Entity {
 
     void update(const float& elapsedSec, Context& c);
     void swap();
-    sf::Drawable& draw();
+    sf::Drawable& draw(float scale);
 
     EntityState* state;
 

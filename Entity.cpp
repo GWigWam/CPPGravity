@@ -24,7 +24,7 @@ void Entity::swap() {
     this->nextState = s_ptr;
 }
 
-sf::Drawable& Entity::draw() {
-    this->shape.setPosition(this->state->position);
+sf::Drawable& Entity::draw(float scale) {
+    this->shape.setPosition(this->state->position * scale);
     return this->shape;
 }

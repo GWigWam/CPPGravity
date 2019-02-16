@@ -8,9 +8,9 @@
 class Context {
 
     public:
-        void init(int noObjs, int xMax, int yMax);
+        void init(unsigned int noObjs, unsigned long size);
         void update(const float& elapsedSec);
-        void draw(sf::RenderWindow& window);
+        void draw(sf::RenderWindow& window, float scale);
 
         std::vector<Entity> Entities;
 };

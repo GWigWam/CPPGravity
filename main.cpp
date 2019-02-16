@@ -3,14 +3,19 @@
 
 #include "Context.hpp"
 
+#define SCREEN_SIZE 900
+
 int main() {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    sf::RenderWindow window(sf::VideoMode(1024, 768), "SFML", sf::Style::Close, settings);
+    sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE, SCREEN_SIZE), "Gravity", sf::Style::Close, settings);
     sf::Clock clock;
 
+    unsigned long wSizeMm = 4500000;
+    float scale = SCREEN_SIZE / (float)wSizeMm;
+
     Context context;
-    context.init(100, 700, 700);
+    context.init(100, wSizeMm);
 
     while(window.isOpen()) {
         sf::Event event;
@@ -27,7 +32,7 @@ int main() {
         context.update(elapsedSec);
 
         window.clear();
-        context.draw(window);
+        context.draw(window, scale);
         window.display();
     }
 
