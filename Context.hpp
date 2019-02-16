@@ -8,7 +8,7 @@
 class Context {
 
     public:
-        void init();
+        void init(int noObjs, int xMax, int yMax);
         void update(const float& elapsedSec);
         void draw(sf::RenderWindow& window);
 

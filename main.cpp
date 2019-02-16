@@ -10,7 +10,7 @@ int main() {
     sf::Clock clock;
 
     Context context;
-    context.init();
+    context.init(100, 700, 700);
 
     while(window.isOpen()) {
         sf::Event event;

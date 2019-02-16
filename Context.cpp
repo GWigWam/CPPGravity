@@ -1,7 +1,11 @@
 #include "Context.hpp"
 
-void Context::init() {
-    Entities.push_back(Entity(10, 100, 0.002, 0.001, 100));
+void Context::init(int noObjs, int xMax, int yMax) {
+    for(int i = 0; i < noObjs; i++) {
+        int x = rand() % xMax;
+        int y = rand() % yMax;
+        Entities.push_back(Entity(x, y, 0, 0, 100));
+    }
 }
 
 void Context::update(const float& elapsedSec) {
