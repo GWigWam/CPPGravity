@@ -17,6 +17,8 @@ int main() {
     Context context;
     context.init(100, wSizeMm, 24 * 60 * 60);
 
+    const float S_PER_UPDATE = 1.0 / 60.0;
+    float lag = 0;
     while(window.isOpen()) {
         sf::Event event;
         while(window.pollEvent(event)) {
@@ -28,8 +30,13 @@ int main() {
             window.close();
         }
 
-        auto elapsedSec = clock.restart().asSeconds();
-        context.update(elapsedSec);
+        float elapsedSec = clock.restart().asSeconds();
+        lag += elapsedSec;
+
+        while(lag >= S_PER_UPDATE) {
+            context.update(S_PER_UPDATE);
+            lag -= S_PER_UPDATE;
+        }
 
         window.clear();
         context.draw(window, scale);
