@@ -11,11 +11,11 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE, SCREEN_SIZE), "Gravity", sf::Style::Close, settings);
     sf::Clock clock;
 
-    unsigned long wSizeMm = 4500000;
+    unsigned long wSizeMm = 1000000;
     float scale = SCREEN_SIZE / (float)wSizeMm;
 
     Context context;
-    context.init(100, wSizeMm);
+    context.init(100, wSizeMm, 24 * 60 * 60);
 
     while(window.isOpen()) {
         sf::Event event;

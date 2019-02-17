@@ -24,6 +24,9 @@ class Entity {
 
     EntityState* state;
 
+    bool operator==(const Entity& b) const;
+    bool operator!=(const Entity& b) const;
+
     private:
     sf::CircleShape shape;
     EntityState* nextState;

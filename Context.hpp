@@ -8,11 +8,12 @@
 class Context {
 
     public:
-        void init(unsigned int noObjs, unsigned long size);
+        void init(unsigned int noObjs, unsigned long size, float timeFactor);
         void update(const float& elapsedSec);
         void draw(sf::RenderWindow& window, float scale);
 
         std::vector<Entity> Entities;
+        float timeFactor;
 };
 
 #endif
