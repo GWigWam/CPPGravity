@@ -44,9 +44,11 @@ void Entity::update(const float& elapsedSec, Context& c) {
         }
     }
 
-    this->nextState->velocity = this->state->velocity + acceleration;
-    sf::Vector2f move = this->nextState->velocity * elapsedSec;
-    this->nextState->position = this->state->position + move;
+    sf::Vector2f deltaV = acceleration * elapsedSec;
+    this->nextState->velocity = this->state->velocity + deltaV;
+
+    sf::Vector2f deltaXY = this->nextState->velocity * elapsedSec;
+    this->nextState->position = this->state->position + deltaXY;
 }
 
 void Entity::swap() {
