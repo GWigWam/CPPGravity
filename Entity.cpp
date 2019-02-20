@@ -24,7 +24,7 @@ EntityState::EntityState(float xp, float yp, float xv, float yv, float mass) : p
 Entity::Entity(float xp, float yp, float xv, float yv, float mass) :
     shape(5),
     state1(std::make_unique<EntityState>(xp, yp, xv, yv, mass)),
-    state2(std::make_unique<EntityState>()) {
+    state2(std::make_unique<EntityState>(xp, yp, xv, yv, mass)) {
     this->state = this->state1.get();
     this->nextState = this->state2.get();
 }
@@ -47,7 +47,7 @@ void Entity::update(const float& elapsedSec, Context& c) {
     sf::Vector2f deltaV = acceleration * elapsedSec;
     this->nextState->velocity = this->state->velocity + deltaV;
 
-    sf::Vector2f deltaXY = this->nextState->velocity * elapsedSec;
+    sf::Vector2f deltaXY = this->nextState->velocity * elapsedSec;    
     this->nextState->position = this->state->position + deltaXY;
 }
 
