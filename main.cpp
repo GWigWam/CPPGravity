@@ -6,6 +6,12 @@
 #define SCREEN_SIZE 900
 
 int main() {
+    sf::Font font;
+    if (!font.loadFromFile("consola.ttf")) {
+        std::cout << "Failed to load font";
+        return 1;
+    }
+
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
     sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE, SCREEN_SIZE), "Gravity", sf::Style::Close, settings);
