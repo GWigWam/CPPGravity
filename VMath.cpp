@@ -3,7 +3,7 @@
 
 namespace VMath {
     template<typename T>
-    inline sf::Vector2<T> normalse(sf::Vector2<T> source)
+    inline sf::Vector2<T> normalise(sf::Vector2<T> source)
     {
         T len = std::hypot(source.x, source.y);
         if (len != 0) {
@@ -24,5 +24,11 @@ namespace VMath {
     {
         sf::Vector2<T> sub = v1 - v2;
         return (sub.x * sub.x) + (sub.y * sub.y);
+    }
+
+    template<typename T>
+    inline T magnitude(sf::Vector2<T> v)
+    {
+        return std::hypot(v.x, v.y);
     }
 }

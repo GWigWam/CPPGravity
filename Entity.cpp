@@ -39,14 +39,14 @@ void Entity::update(const float& elapsedSec, Context& c) {
             float a = f / c_tera / this->state->mass; // Acceleration in m/s
             float a_Mm_s = a / c_mega; // Acceleration in Mm/s
 
-            auto direction = VMath::normalse(ent.state->position - this->state->position);
+            auto direction = VMath::normalise(ent.state->position - this->state->position);
             acceleration += direction * a_Mm_s;
         }
     }
 
     sf::Vector2f deltaV = acceleration * elapsedSec;
     this->nextState->velocity = this->state->velocity + deltaV;
-
+    
     sf::Vector2f deltaXY = this->nextState->velocity * elapsedSec;    
     this->nextState->position = this->state->position + deltaXY;
 }
