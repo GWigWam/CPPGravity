@@ -45,7 +45,7 @@ int main() {
         }
 
         window.clear();
-        context.draw(window, scale);
+        context.draw(window, scale, lag);
         window.display();
     }
 

@@ -28,8 +28,8 @@ void Context::update(const float& elapsedSec) {
     }
 }
 
-void Context::draw(sf::RenderWindow& window, float scale) {
+void Context::draw(sf::RenderWindow& window, float scale, float lag) {
     for(auto &ent : Entities) {
-        window.draw(ent.draw(scale));
+        window.draw(ent.draw(scale, lag * this->timeFactor));
     }
 }

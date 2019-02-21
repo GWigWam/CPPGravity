@@ -57,8 +57,9 @@ void Entity::swap() {
     this->nextState = s_ptr;
 }
 
-sf::Drawable& Entity::draw(float scale) {
-    this->shape.setPosition(this->state->position * scale);
+sf::Drawable& Entity::draw(float scale, float lag) {
+    auto drawAt = (this->state->position + (this->state->velocity * lag)) * scale;
+    this->shape.setPosition(drawAt);
     return this->shape;
 }
 
