@@ -19,7 +19,7 @@ const float G_Pg_Mm_s = G_Pg_m_s / (c_mega * c_mega);
 
 EntityState::EntityState() { }
 
-EntityState::EntityState(float xp, float yp, float xv, float yv, float mass) : position(xp, yp), velocity(xv, yv), mass(mass) { }
+EntityState::EntityState(float xp, float yp, float xv, float yv, float mass) : position(xp, yp), velocity(xv, yv), detlaV(0, 0), mass(mass) { }
 
 Entity::Entity(float xp, float yp, float xv, float yv, float mass) :
     shape(5),
@@ -29,32 +29,38 @@ Entity::Entity(float xp, float yp, float xv, float yv, float mass) :
     this->nextState = this->state2.get();
 }
 
-void Entity::update(const float& elapsedSec, Context& c) {
-    sf::Vector2f acceleration;
-    for(auto &ent : c.Entities) {
-        if(ent != *this) {
-            float m = this->state->mass * ent.state->mass;
-            float rsqr = VMath::distanceSqr(this->state->position, ent.state->position);
-            float f = G_Pg_Mm_s * (m / rsqr); // Force in N (newtons) (kg/m/s)
-            float a = f / c_tera / this->state->mass; // Acceleration in m/s
-            float a_Mm_s = a / c_mega; // Acceleration in Mm/s
+void Entity::update(const float& elapsedSec, std::vector<Entity>::iterator from, std::vector<Entity>::const_iterator to) {
+    for(auto ent = from; ent != to; ent++) {
+        float m = this->state->mass * ent->state->mass;
+        float rsqr = VMath::distanceSqr(this->state->position, ent->state->position);
+        float f = G_Pg_Mm_s * (m / rsqr); // Force in N (newtons) (kg/m/s)
 
-            auto direction = VMath::normalise(ent.state->position - this->state->position);
-            acceleration += direction * a_Mm_s;
-        }
+        apply_force(f, ent->state->position);
+        ent->apply_force(f, this->state->position);
     }
 
-    sf::Vector2f deltaV = acceleration * elapsedSec;
-    this->nextState->velocity = this->state->velocity + deltaV;
+    sf::Vector2f deltaVt = this->nextState->detlaV * elapsedSec;
+    this->nextState->velocity = this->state->velocity + deltaVt;
     
     sf::Vector2f deltaXY = this->nextState->velocity * elapsedSec;    
     this->nextState->position = this->state->position + deltaXY;
+}
+
+void Entity::apply_force(float force, sf::Vector2f target) {
+    float a = force / c_tera / this->state->mass; // Acceleration in m/s
+    float a_Mm_s = a / c_mega; // Acceleration in Mm/s
+
+    auto direction = VMath::normalise(target - this->state->position);
+
+    this->nextState->detlaV += direction * a_Mm_s;
 }
 
 void Entity::swap() {
     EntityState* s_ptr = this->state;
     this->state = this->nextState;
     this->nextState = s_ptr;
+
+    this->nextState->detlaV = sf::Vector2f(0, 0);
 }
 
 sf::Drawable& Entity::draw(float scale, float lag) {

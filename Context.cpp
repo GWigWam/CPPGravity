@@ -29,8 +29,8 @@ void Context::init(unsigned int noObjs, unsigned long size, float timeFactor) {
 
 void Context::update(const float& elapsedSec) {
     auto time = elapsedSec * this->timeFactor;
-    for(auto &ent : Entities) {
-        ent.update(time, *this);
+    for(auto ent = Entities.begin(); ent != Entities.end(); ent++) {
+        ent->update(time, ent + 1, Entities.cend());
     }
     for(auto &ent : Entities) {
         ent.swap();
