@@ -18,6 +18,10 @@ struct EntityState {
 class Entity {
     public:
     Entity(float xp, float yp, float xv, float yv, float mass);
+    
+    Entity(Entity&& other);
+    Entity(const Entity& other) = delete;
+    Entity& operator=(const Entity& other) = delete;
 
     void update(const float& elapsedSec, std::vector<Entity>::iterator from, std::vector<Entity>::const_iterator to);
     void swap();

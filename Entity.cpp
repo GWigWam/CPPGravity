@@ -25,8 +25,17 @@ Entity::Entity(float xp, float yp, float xv, float yv, float mass) :
     shape(5),
     state1(std::make_unique<EntityState>(xp, yp, xv, yv, mass)),
     state2(std::make_unique<EntityState>(xp, yp, xv, yv, mass)) {
-    this->state = this->state1.get();
-    this->nextState = this->state2.get();
+    state = state1.get();
+    nextState = state2.get();
+}
+
+Entity::Entity(Entity&& other) :
+    shape(std::move(other.shape)),
+    state1(std::move(other.state1)),
+    state2(std::move(other.state2)) {
+    auto isInState1 = other.state == state1.get();
+    state = isInState1 ? state1.get() : state2.get();
+    nextState = isInState1 ? state1.get() : state2.get();
 }
 
 void Entity::update(const float& elapsedSec, std::vector<Entity>::iterator from, std::vector<Entity>::const_iterator to) {
