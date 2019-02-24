@@ -21,12 +21,13 @@ EntityState::EntityState() { }
 
 EntityState::EntityState(float xp, float yp, float xv, float yv, float mass) : position(xp, yp), velocity(xv, yv), detlaV(0, 0), mass(mass) { }
 
-Entity::Entity(float xp, float yp, float xv, float yv, float mass) :
+Entity::Entity(float xp, float yp, float xv, float yv, float mass, const sf::Color& color) :
     shape(5),
     state1(std::make_unique<EntityState>(xp, yp, xv, yv, mass)),
     state2(std::make_unique<EntityState>(xp, yp, xv, yv, mass)) {
     state = state1.get();
     nextState = state2.get();
+    shape.setFillColor(color);
 }
 
 Entity::Entity(Entity&& other) :

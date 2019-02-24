@@ -17,7 +17,7 @@ struct EntityState {
 
 class Entity {
     public:
-    Entity(float xp, float yp, float xv, float yv, float mass);
+    Entity(float xp, float yp, float xv, float yv, float mass, const sf::Color& color = sf::Color::White);
     
     Entity(Entity&& other);
     Entity(const Entity& other) = delete;

@@ -16,14 +16,14 @@ void Context::init(unsigned int noObjs, unsigned long size, float timeFactor) {
 
     auto center = size / 2;
     auto sun_m = 1988500000000000000.000000000000;                          // 1.9885e30kg
-    Entity sun(center, center, 0, 0, sun_m);
+    Entity sun(center, center, 0, 0, sun_m, sf::Color::Yellow);
     Entities.push_back(std::move(sun));
 
     auto mer_apo = 69820;
     auto mer_x = center - mer_apo;
     auto mer_apo_spd = 0.03886;
     auto mer_m = 330110000000.0000000000000;                                // 3.3011e23kg
-    Entity mercury(mer_x, center, 0, mer_apo_spd, mer_m);
+    Entity mercury(mer_x, center, 0, mer_apo_spd, mer_m, sf::Color(192, 192, 192));
     Entities.push_back(std::move(mercury));
 
     auto ven_dist = 108208;                                                 // 1.08208e11m
@@ -37,8 +37,7 @@ void Context::init(unsigned int noObjs, unsigned long size, float timeFactor) {
     auto earth_x = center - earth_apo;
     auto earth_apo_spd = 0.02929;                                           // 30140m/s
     auto earth_m = 5972300000000.000000000000;                              // 5.9723e24kg
-    Entity earth(earth_x, center, 0, earth_apo_spd, earth_m);
-    Entities.push_back(std::move(earth));
+    Entity earth(earth_x, center, 0, earth_apo_spd, earth_m, sf::Color::Blue);
 
     auto moon_dist = 384.402;                                               // 3.84402e8m
     auto moon_x = earth_x - moon_dist;
@@ -47,19 +46,20 @@ void Context::init(unsigned int noObjs, unsigned long size, float timeFactor) {
     auto moon_m = 73420000000.000000000000;                                 // 7.342e22kg
     Entity moon(moon_x, center, 0, moon_spd, moon_m);
     Entities.push_back(std::move(moon));
+    Entities.push_back(std::move(earth));
 
     auto mars_dist = 227939.2;                                              // 2.2793292e11
     auto mars_x = center - mars_dist;
     auto mars_spd = 0.0241;                                                 // 24100m/s
     auto mars_m = 641710000000.000000000000;                                // 6.4171e23kg
-    Entity mars(mars_x, center, 0, mars_spd, mars_m);
+    Entity mars(mars_x, center, 0, mars_spd, mars_m, sf::Color(255, 140, 100));
     Entities.push_back(std::move(mars));
 
     auto jup_dist = 778570;                                                 // 7.7857e11m
     auto jup_x = center - jup_dist;
     auto jup_spd = 0.01306;                                                 // 13060m/s
     auto jup_m = 1898200000000000.000000000000;                             // 1.8982e27kg
-    Entity jupiter(jup_x, center, 0, jup_spd, jup_x);
+    Entity jupiter(jup_x, center, 0, jup_spd, jup_x, sf::Color(190, 170, 140));
     Entities.push_back(std::move(jupiter));
 
     auto sat_dist = 1433530;                                                // 1.43353e12m
@@ -73,14 +73,14 @@ void Context::init(unsigned int noObjs, unsigned long size, float timeFactor) {
     auto ura_x = center - ura_dist;
     auto ura_spd = 0.0068;                                                  // 6800m/s
     auto ura_m = 86800000000000.000000000000;                               // 8.68e25kg
-    Entity uranus(ura_x, center, 0, ura_spd, ura_m);
+    Entity uranus(ura_x, center, 0, ura_spd, ura_m, sf::Color(200, 255, 255));
     Entities.push_back(std::move(uranus));
 
     auto nep_dist = 4495100;                                                // 4.4951e12m
     auto nep_x = center - nep_dist;
     auto nep_spd = 0.0054;                                                  // 5400m/s
     auto nep_m = 102000000000000.000000000000;                              // 1.02e26kg
-    Entity neptune(nep_x, center, 0, nep_spd, nep_m);
+    Entity neptune(nep_x, center, 0, nep_spd, nep_m, sf::Color(50, 50, 140));
     Entities.push_back(std::move(neptune));
 }
 
