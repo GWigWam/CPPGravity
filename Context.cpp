@@ -26,11 +26,8 @@ void Context::update(const float& elapsedSec) {
         auto tot = std::accumulate(&deltaVs[i][0], &deltaVs[i][cnt], sf::Vector2f(), [](sf::Vector2f acc, const sf::Vector2f& cur){
             return acc + cur;
         });
-        Entities[i].state->detlaV = tot;
-    }
-
-    for(auto ent = Entities.begin(); ent != Entities.end(); ent++) {
-        ent->update(time);
+        Entities[i].update_velocity(tot * time);
+        Entities[i].update(time);
     }
 
     for(auto &ent : Entities) {

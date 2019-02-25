@@ -11,7 +11,6 @@ struct EntityState {
         EntityState(float xp, float yp, float xv, float yv, float mass);
         sf::Vector2f position;
         sf::Vector2f velocity;
-        sf::Vector2f detlaV;
         float mass;
 };
 
@@ -27,6 +26,7 @@ class Entity {
 
     void update(const float& elapsedSec);
     sf::Vector2f calc_deltav(float force, sf::Vector2f direction);
+    void update_velocity(const sf::Vector2f&& delta);
     void swap();
     sf::Drawable& draw(float scale, float lag);
 

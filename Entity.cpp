@@ -19,7 +19,7 @@ const float G_Pg_Mm_s = G_Pg_m_s / (c_mega * c_mega);
 
 EntityState::EntityState() { }
 
-EntityState::EntityState(float xp, float yp, float xv, float yv, float mass) : position(xp, yp), velocity(xv, yv), detlaV(0, 0), mass(mass) { }
+EntityState::EntityState(float xp, float yp, float xv, float yv, float mass) : position(xp, yp), velocity(xv, yv), mass(mass) { }
 
 Entity::Entity(float xp, float yp, float xv, float yv, float mass, const sf::Color& color) :
     shape(5),
@@ -47,9 +47,6 @@ float Entity::calc_force(Entity* e1, Entity* e2) {
 }
 
 void Entity::update(const float& elapsedSec) {
-    sf::Vector2f deltaVt = this->nextState->detlaV * elapsedSec;
-    this->nextState->velocity = this->state->velocity + deltaVt;
-    
     sf::Vector2f deltaXY = this->nextState->velocity * elapsedSec;    
     this->nextState->position = this->state->position + deltaXY;
 }
@@ -62,12 +59,14 @@ sf::Vector2f Entity::calc_deltav(float force, sf::Vector2f direction) {
     return res;
 }
 
+void Entity::update_velocity(const sf::Vector2f&& delta) {
+    this->nextState->velocity = this->state->velocity + delta;
+}
+
 void Entity::swap() {
     EntityState* s_ptr = this->state;
     this->state = this->nextState;
     this->nextState = s_ptr;
-
-    this->nextState->detlaV = sf::Vector2f(0, 0);
 }
 
 sf::Drawable& Entity::draw(float scale, float lag) {
