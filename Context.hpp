@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Entity.hpp"
+#include "VMath.cpp"
 
 class Context {
 

@@ -1,6 +1,9 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
+#ifndef VMATH_CPP
+#define VMATH_CPP
+
 namespace VMath {
     template<typename T>
     inline sf::Vector2<T> normalise(sf::Vector2<T> source)
@@ -32,3 +35,5 @@ namespace VMath {
         return std::hypot(v.x, v.y);
     }
 }
+
+#endif

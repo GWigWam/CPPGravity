@@ -23,7 +23,10 @@ class Entity {
     Entity(const Entity& other) = delete;
     Entity& operator=(const Entity& other) = delete;
 
-    void update(const float& elapsedSec, std::vector<Entity>::iterator from, std::vector<Entity>::const_iterator to);
+    static float calc_force(Entity* e1, Entity* e2);
+
+    void update(const float& elapsedSec);
+    sf::Vector2f calc_deltav(float force, sf::Vector2f direction);
     void swap();
     sf::Drawable& draw(float scale, float lag);
 
