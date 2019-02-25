@@ -105,7 +105,7 @@ void Context::update(const float& elapsedSec) {
     }
 
     for(int i = 0; i < cnt; ++i) {
-        auto tot = std::accumulate(&deltaVs[i][0], &deltaVs[i][cnt - 1], sf::Vector2f(), [](sf::Vector2f acc, const sf::Vector2f& cur){
+        auto tot = std::accumulate(&deltaVs[i][0], &deltaVs[i][cnt], sf::Vector2f(), [](sf::Vector2f acc, const sf::Vector2f& cur){
             return acc + cur;
         });
         Entities[i].state->detlaV = tot;
